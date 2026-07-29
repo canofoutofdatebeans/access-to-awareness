@@ -5,329 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Access to Awareness™ — Sophie McLean</title>
 <meta name="description" content="Awareness is the ultimate power. A space of total acceptance, where the ego is seen through — the teaching of Sophie McLean, from Menorca." />
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-
-<style>
-/* ============================================================
-   ACCESS TO AWARENESS — SOPHIE McLEAN
-   Redesign · quiet-luxury minimalism
-   ============================================================ */
-
-:root{
-  --bone:      #F5F2EA;   /* warm off-white background      */
-  --bone-2:    #EFEBE0;   /* faint panel                    */
-  --ink:       #22211C;   /* deep charcoal text             */
-  --ink-soft:  #55524A;   /* secondary text                 */
-  --olive:     #6F7355;   /* Menorca olive accent           */
-  --olive-dk:  #565A41;
-  --sand:      #C9BEA9;   /* hairlines / muted              */
-  --line:      rgba(34,33,28,0.14);
-
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --sans:  "Jost", system-ui, sans-serif;
-
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --gutter: clamp(1.4rem, 5vw, 6rem);
-  --maxw: 1240px;
-}
-
-*{ margin:0; padding:0; box-sizing:border-box; }
-
-html{ scroll-behavior:smooth; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-
-body{
-  background:var(--bone);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-weight:300;
-  line-height:1.65;
-  overflow-x:hidden;
-  cursor:auto;
-}
-
-/* Grain overlay ------------------------------------------------ */
-.grain{
-  position:fixed; inset:0; z-index:9998; pointer-events:none;
-  opacity:.035; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Scroll progress hairline ------------------------------------ */
-.progress{
-  position:fixed; top:0; left:0; height:1px; width:0%;
-  background:var(--olive); z-index:9997; transition:width .1s linear;
-}
-
-/* Custom cursor ---------------------------------------------- */
-.cursor-ring, .cursor-dot{
-  position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
-  border-radius:50%; mix-blend-mode:normal;
-  transform:translate(-50%,-50%);
-}
-.cursor-ring{
-  width:38px; height:38px; border:1px solid rgba(34,33,28,.45);
-  transition:width .3s var(--ease), height .3s var(--ease), border-color .3s var(--ease), opacity .3s;
-}
-.cursor-dot{ width:5px; height:5px; background:var(--ink); }
-body.hovering .cursor-ring{ width:64px; height:64px; border-color:var(--olive); }
-@media (hover:none), (pointer:coarse){ .cursor-ring,.cursor-dot{ display:none; } }
-
-/* ============================================================
-   TYPOGRAPHY HELPERS
-   ============================================================ */
-.eyebrow{
-  font-family:var(--sans); font-weight:400; font-size:.72rem;
-  letter-spacing:.34em; text-transform:uppercase; color:var(--olive);
-}
-h1,h2,h3{ font-family:var(--serif); font-weight:300; line-height:1.04; letter-spacing:-.01em; }
-
-.display{ font-size:clamp(3rem, 9vw, 8.6rem); }
-.h-lg{ font-size:clamp(2.4rem, 5.5vw, 5rem); }
-.h-md{ font-size:clamp(1.9rem, 3.4vw, 3.1rem); }
-
-.lead{ font-family:var(--serif); font-size:clamp(1.35rem,2.4vw,2rem); font-weight:300; line-height:1.4; color:var(--ink); }
-.body{ font-size:1.02rem; color:var(--ink-soft); max-width:44ch; }
-em, .it{ font-style:italic; }
-
-/* reveal words */
-.reveal-line{ display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.14em; margin-bottom:-.14em; }
-.word{ display:inline-block; will-change:transform; }
-.fade-up{ opacity:0; transform:translateY(28px); }
-
-/* ============================================================
-   BUTTONS / LINKS
-   ============================================================ */
-.btn{
-  --c:var(--ink);
-  position:relative; display:inline-flex; align-items:center; gap:.7em;
-  font-family:var(--sans); font-weight:400; font-size:.82rem;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--c);
-  text-decoration:none; padding:1.05em 2.1em; border:1px solid var(--c);
-  border-radius:100px; overflow:hidden; background:transparent;
-  transition:color .5s var(--ease); cursor:pointer; z-index:0;
-}
-.btn::before{
-  content:""; position:absolute; inset:0; z-index:-1; background:var(--c);
-  transform:scaleY(0); transform-origin:bottom; transition:transform .5s var(--ease);
-}
-.btn:hover{ color:var(--bone); }
-.btn:hover::before{ transform:scaleY(1); }
-.btn--olive{ --c:var(--olive-dk); }
-.btn--fill{ --c:var(--ink); color:var(--bone); }
-.btn--fill::before{ transform:scaleY(1); }
-.btn--fill:hover{ color:var(--ink); }
-.btn--fill:hover::before{ transform:scaleY(0); }
-
-.link-u{
-  position:relative; color:var(--ink); text-decoration:none;
-  font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
-}
-.link-u::after{
-  content:""; position:absolute; left:0; bottom:-4px; height:1px; width:100%;
-  background:currentColor; transform:scaleX(0); transform-origin:right;
-  transition:transform .5s var(--ease);
-}
-.link-u:hover::after{ transform:scaleX(1); transform-origin:left; }
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-header{
-  position:fixed; top:0; left:0; width:100%; z-index:1000;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:1.6rem var(--gutter);
-  transition:transform .5s var(--ease), background .5s, padding .5s var(--ease);
-  mix-blend-mode:normal;
-}
-header.hidden{ transform:translateY(-100%); }
-header.scrolled{ background:rgba(245,242,234,.82); backdrop-filter:blur(14px); padding:1rem var(--gutter); border-bottom:1px solid var(--line); }
-
-.brand{ font-family:var(--serif); font-size:1.28rem; letter-spacing:.02em; color:var(--ink); text-decoration:none; line-height:1; }
-.brand sup{ font-size:.5em; vertical-align:super; }
-.brand span{ display:block; font-family:var(--sans); font-size:.58rem; font-weight:400; letter-spacing:.34em; text-transform:uppercase; color:var(--olive); margin-top:.35em; }
-
-.nav-right{ display:flex; align-items:center; gap:2rem; }
-.nav-links{ display:flex; gap:1.9rem; }
-.nav-links a{ font-family:var(--sans); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); text-decoration:none; opacity:.85; transition:opacity .4s; position:relative; }
-.nav-links a::after{ content:""; position:absolute; left:0; bottom:-5px; height:1px; width:100%; background:var(--olive); transform:scaleX(0); transform-origin:right; transition:transform .45s var(--ease); }
-.nav-links a:hover{ opacity:1; }
-.nav-links a:hover::after{ transform:scaleX(1); transform-origin:left; }
-
-.menu-toggle{
-  display:flex; align-items:center; gap:.7em; background:none; border:none;
-  font-family:var(--sans); font-size:.76rem; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--ink); cursor:pointer;
-}
-.menu-toggle .bars{ display:inline-flex; flex-direction:column; gap:4px; width:22px; }
-.menu-toggle .bars i{ height:1px; width:100%; background:var(--ink); display:block; transition:transform .4s var(--ease); }
-
-@media(max-width:900px){ .nav-links{ display:none; } }
-
-/* Full-screen menu overlay ----------------------------------- */
-.overlay{
-  position:fixed; inset:0; z-index:1200; background:var(--ink); color:var(--bone);
-  display:flex; flex-direction:column; justify-content:center; padding:var(--gutter);
-  clip-path:circle(0% at calc(100% - 5rem) 3rem); pointer-events:none;
-  transition:clip-path .8s var(--ease);
-}
-.overlay.open{ clip-path:circle(150% at calc(100% - 5rem) 3rem); pointer-events:auto; }
-.overlay .close{ position:absolute; top:1.6rem; right:var(--gutter); background:none; border:none; color:var(--bone); font-family:var(--sans); font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; }
-.overlay-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:3rem; align-items:end; max-width:var(--maxw); margin:0 auto; width:100%; }
-.overlay nav{ display:flex; flex-direction:column; gap:.2rem; }
-.overlay nav a{
-  font-family:var(--serif); font-size:clamp(1.9rem,4.5vw,3.4rem); font-weight:300;
-  color:var(--bone); text-decoration:none; line-height:1.18; opacity:.55;
-  transition:opacity .4s, padding-left .4s var(--ease); width:fit-content;
-}
-.overlay nav a:hover{ opacity:1; padding-left:.6rem; }
-.overlay nav a .n{ font-family:var(--sans); font-size:.6rem; letter-spacing:.2em; vertical-align:top; color:var(--olive); margin-right:.7em; }
-.overlay-side{ border-left:1px solid rgba(245,242,234,.18); padding-left:2.4rem; }
-.overlay-side p{ color:rgba(245,242,234,.6); font-size:.92rem; margin-bottom:1.4rem; max-width:30ch; }
-.overlay-side a{ color:var(--bone); }
-@media(max-width:760px){ .overlay-grid{ grid-template-columns:1fr; gap:2rem; } .overlay-side{ border:none; padding-left:0; } }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{ position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center; padding:8rem var(--gutter) 6rem; }
-#webgl{ position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0; }
-.hero-veil{ position:absolute; inset:0; z-index:1; background:radial-gradient(ellipse 60% 55% at 50% 46%, rgba(245,242,234,.55) 0%, rgba(245,242,234,0) 70%); pointer-events:none; }
-.hero-inner{ position:relative; z-index:2; max-width:1000px; }
-.hero .eyebrow{ margin-bottom:2rem; }
-.hero h1{ margin:0 auto; }
-.hero .lead{ margin:2.2rem auto 0; max-width:34ch; color:var(--ink-soft); }
-.hero-cta{ margin-top:3rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-
-.scrollcue{ position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:.8rem; }
-.scrollcue span{ font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-soft); }
-.scrollcue .l{ width:1px; height:52px; background:linear-gradient(var(--olive),transparent); position:relative; overflow:hidden; }
-.scrollcue .l::after{ content:""; position:absolute; top:-50%; left:0; width:100%; height:50%; background:var(--ink); animation:cue 2.4s var(--ease) infinite; }
-@keyframes cue{ 0%{ top:-50%; } 60%,100%{ top:100%; } }
-
-/* ============================================================
-   MARQUEE
-   ============================================================ */
-.marquee{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; padding:1.7rem 0; white-space:nowrap; }
-.marquee-track{ display:inline-block; will-change:transform; }
-.marquee-track span{ font-family:var(--serif); font-style:italic; font-size:clamp(1.4rem,2.6vw,2.3rem); color:var(--ink); padding:0 2.2rem; }
-.marquee-track span::after{ content:"·"; color:var(--olive); margin-left:4.4rem; }
-
-/* ============================================================
-   LAYOUT PRIMITIVES
-   ============================================================ */
-section{ position:relative; }
-.wrap{ max-width:var(--maxw); margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter); }
-.pad{ padding-top:clamp(6rem,13vw,12rem); padding-bottom:clamp(6rem,13vw,12rem); }
-.center{ text-align:center; }
-.sec-head{ margin-bottom:4rem; }
-.sec-head .eyebrow{ display:block; margin-bottom:1.4rem; }
-
-/* Invitation */
-.invite{ background:var(--bone); text-align:center; }
-.invite .lead{ max-width:26ch; margin:0 auto; }
-.invite-body{ margin:2.6rem auto 0; max-width:52ch; color:var(--ink-soft); font-size:1.08rem; }
-.invite-body p{ margin-bottom:1.4rem; }
-.invite .whisper{ margin-top:2.6rem; font-family:var(--serif); font-style:italic; font-size:1.25rem; color:var(--olive-dk); }
-
-/* The Work — offerings */
-.work-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-bottom:3rem; }
-.offer{
-  display:grid; grid-template-columns:auto 1fr auto; gap:2.5rem; align-items:center;
-  padding:2.8rem 0; border-top:1px solid var(--line); text-decoration:none; color:var(--ink);
-  transition:padding .5s var(--ease);
-}
-.offer:last-child{ border-bottom:1px solid var(--line); }
-.offer .num{ font-family:var(--sans); font-size:.78rem; letter-spacing:.1em; color:var(--olive); align-self:flex-start; padding-top:.6rem; }
-.offer .mid h3{ font-size:clamp(1.9rem,3.4vw,2.9rem); transition:transform .5s var(--ease); }
-.offer .mid p{ color:var(--ink-soft); max-width:52ch; margin-top:.7rem; font-size:1rem; }
-.offer .meta{ display:flex; gap:1.4rem; margin-top:1rem; }
-.offer .meta span{ font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--olive-dk); border:1px solid var(--line); border-radius:100px; padding:.35em 1em; }
-.offer .go{ font-family:var(--sans); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; display:flex; align-items:center; gap:.6em; transition:transform .5s var(--ease); color:var(--ink-soft); }
-.offer .go svg{ width:26px; transition:transform .5s var(--ease); }
-.offer:hover{ padding-left:1.2rem; padding-right:.4rem; }
-.offer:hover .mid h3{ transform:translateX(6px); }
-.offer:hover .go{ color:var(--olive-dk); }
-.offer:hover .go svg{ transform:translateX(8px); }
-@media(max-width:760px){
-  .offer{ grid-template-columns:1fr; gap:.9rem; padding:2.2rem 0; }
-  .offer .num{ padding-top:0; }
-  .offer .go{ margin-top:.6rem; }
-}
-
-/* About */
-.about{ background:var(--bone-2); }
-.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,6vw,6rem); align-items:center; }
-.about-portrait{ position:relative; aspect-ratio:4/5; border-radius:2px; overflow:hidden; background:linear-gradient(150deg,#d9d2c2,#b9b19d 55%,#8f9078); }
-.about-portrait .ph{ position:absolute; inset:0; display:flex; align-items:flex-end; padding:1.4rem; color:rgba(255,255,255,.85); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; }
-.about-portrait::after{ content:""; position:absolute; inset:0; background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 60%); }
-.about-copy p{ color:var(--ink-soft); margin-bottom:1.3rem; font-size:1.05rem; max-width:46ch; }
-.about-truth{ font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,2.6vw,2.1rem); color:var(--ink); line-height:1.3; }
-.stats{ display:flex; gap:2.8rem; margin-top:2.6rem; }
-.stats .st .n{ font-family:var(--serif); font-size:2.6rem; line-height:1; }
-.stats .st .k{ font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--olive-dk); margin-top:.6rem; }
-@media(max-width:820px){ .about-grid{ grid-template-columns:1fr; } .about-portrait{ max-width:420px; } }
-
-/* Quote */
-.quote{ text-align:center; }
-.quote blockquote{ font-family:var(--serif); font-weight:300; font-size:clamp(2rem,5vw,4rem); line-height:1.14; max-width:18ch; margin:0 auto; }
-.quote .attr{ margin-top:2.2rem; font-size:.74rem; letter-spacing:.22em; text-transform:uppercase; color:var(--olive-dk); }
-
-/* Books */
-.books-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,5rem); }
-.book{ display:flex; gap:2rem; align-items:center; }
-.book-cover{ flex:0 0 150px; aspect-ratio:2/3; border-radius:2px; box-shadow:0 24px 50px -24px rgba(34,33,28,.5); position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:1.4rem; transition:transform .6s var(--ease); }
-.book-cover.c1{ background:linear-gradient(160deg,#3a3f30,#565a41); color:var(--bone); }
-.book-cover.c2{ background:linear-gradient(160deg,#c9bea9,#a99f89); color:#2b2a22; }
-.book-cover .ct{ font-family:var(--serif); font-size:1.15rem; line-height:1.15; }
-.book-cover .cl{ font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; margin-top:1rem; opacity:.7; }
-.book:hover .book-cover{ transform:translateY(-8px) rotate(-1.5deg); }
-.book-info h3{ font-size:1.7rem; }
-.book-info p{ color:var(--ink-soft); font-size:.98rem; margin:.6rem 0 1.1rem; max-width:34ch; }
-@media(max-width:820px){ .books-grid{ grid-template-columns:1fr; } }
-
-/* Newsletter */
-.stay{ background:var(--ink); color:var(--bone); text-align:center; }
-.stay .eyebrow{ color:var(--sand); }
-.stay h2{ color:var(--bone); max-width:16ch; margin:1.4rem auto 0; }
-.stay p{ color:rgba(245,242,234,.62); max-width:44ch; margin:1.6rem auto 0; }
-.form{ display:flex; gap:.8rem; max-width:460px; margin:2.6rem auto 0; flex-wrap:wrap; justify-content:center; }
-.form input{ flex:1 1 240px; background:transparent; border:none; border-bottom:1px solid rgba(245,242,234,.35); color:var(--bone); font-family:var(--sans); font-size:1rem; padding:.9rem .4rem; outline:none; transition:border-color .4s; }
-.form input::placeholder{ color:rgba(245,242,234,.4); }
-.form input:focus{ border-color:var(--olive); }
-.form button{ background:var(--bone); color:var(--ink); border:none; border-radius:100px; padding:.95em 2rem; font-family:var(--sans); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; transition:background .4s,color .4s; }
-.form button:hover{ background:var(--olive); color:var(--bone); }
-.stay .sub{ margin-top:1.8rem; font-size:.82rem; }
-.stay .sub a{ color:var(--sand); }
-.form-note{ margin-top:1rem; font-size:.8rem; color:var(--olive); min-height:1.2em; letter-spacing:.05em; }
-
-/* Final CTA */
-.final{ text-align:center; }
-.final h2{ max-width:16ch; margin:0 auto; }
-.final p{ color:var(--ink-soft); margin:1.8rem auto 2.6rem; max-width:40ch; }
-.final .humour{ margin-top:3.5rem; font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--olive-dk); }
-
-/* Footer */
-footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clamp(4rem,8vw,7rem) var(--gutter) 2.4rem; }
-.foot-grid{ max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:3rem; }
-.foot-brand .brand{ font-size:1.5rem; }
-.foot-brand p{ color:var(--ink-soft); font-size:.92rem; margin-top:1.4rem; max-width:30ch; }
-.foot-col h4{ font-family:var(--sans); font-weight:500; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--olive-dk); margin-bottom:1.3rem; }
-.foot-col a{ display:block; color:var(--ink); text-decoration:none; font-size:.95rem; margin-bottom:.7rem; opacity:.82; transition:opacity .3s, padding-left .3s var(--ease); width:fit-content; }
-.foot-col a:hover{ opacity:1; padding-left:.4rem; }
-.foot-bottom{ max-width:var(--maxw); margin:3.5rem auto 0; padding-top:1.8rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.76rem; color:var(--ink-soft); letter-spacing:.04em; }
-@media(max-width:820px){ .foot-grid{ grid-template-columns:1fr 1fr; } .foot-brand{ grid-column:1/-1; } }
-
-/* reduced motion */
-@media (prefers-reduced-motion:reduce){
-  *{ animation:none !important; transition:none !important; }
-  .word{ transform:none !important; } .fade-up{ opacity:1 !important; transform:none !important; }
-  html{ scroll-behavior:auto; }
-}
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -335,64 +16,64 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
 <div class="progress" id="progress"></div>
 <div class="cursor-ring" id="ring"></div>
 <div class="cursor-dot" id="dot"></div>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark">☾</button>
 
-<!-- ============ HEADER ============ -->
-<header id="header">
-  <a href="#top" class="brand" data-hover>Access to Awareness<sup>™</sup><span>Sophie McLean</span></a>
+<header class="site" id="header">
+  <a href="index.html" class="brand" data-hover>Access to Awareness<sup>™</sup><span>Sophie McLean</span></a>
   <div class="nav-right">
     <nav class="nav-links">
-      <a href="#work">Courses</a>
-      <a href="#about">About</a>
-      <a href="#books">Books</a>
-      <a href="#stay">Substack</a>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="live.html">Live</a>
+      <a href="interviews.html">Interviews</a>
+      <a href="books.html">Books</a>
     </nav>
     <button class="menu-toggle" id="menuOpen" data-hover>Menu <span class="bars"><i></i><i></i></span></button>
   </div>
 </header>
 
-<!-- ============ MENU OVERLAY ============ -->
 <div class="overlay" id="overlay">
   <button class="close" id="menuClose" data-hover>Close ✕</button>
   <div class="overlay-grid">
     <nav>
-      <a href="#top"><span class="n">01</span>Home</a>
-      <a href="#about"><span class="n">02</span>About</a>
-      <a href="#live"><span class="n">03</span>Sophie McLean Live</a>
-      <a href="#work"><span class="n">04</span>Courses</a>
-      <a href="#work"><span class="n">05</span>Worksheets</a>
-      <a href="#live"><span class="n">06</span>Interviews</a>
-      <a href="#books"><span class="n">07</span>Books</a>
-      <a href="#stay"><span class="n">08</span>Blog</a>
-      <a href="#final"><span class="n">09</span>Contact</a>
-      <a href="#final"><span class="n">10</span>Donate</a>
+      <a href="index.html" aria-current="page"><span class="n">01</span>Home</a>
+      <a href="about.html"><span class="n">02</span>About</a>
+      <a href="live.html"><span class="n">03</span>Sophie McLean Live</a>
+      <a href="courses.html"><span class="n">04</span>Courses</a>
+      <a href="worksheets.html"><span class="n">05</span>Worksheets</a>
+      <a href="interviews.html"><span class="n">06</span>Interviews</a>
+      <a href="books.html"><span class="n">07</span>Books</a>
+      <a href="contact.html"><span class="n">08</span>Contact</a>
+      <a href="donate.html"><span class="n">09</span>Donate</a>
     </nav>
     <div class="overlay-side">
       <p>For the Master Course and Mentoring, we begin with a conversation.</p>
-      <a href="#final" class="link-u" data-hover>Book a call →</a><br><br>
+      <a href="contact.html" class="link-u" data-hover>Book a call →</a><br><br>
       <a href="mailto:accesstoawareness@gmail.com" class="link-u" data-hover>accesstoawareness@gmail.com</a><br><br>
       <a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" class="link-u" data-hover>Follow on Substack →</a>
     </div>
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
 <main id="top">
+
+<!-- HERO -->
 <section class="hero">
-  <canvas id="webgl"></canvas>
+  <canvas id="sphere"></canvas>
   <div class="hero-veil"></div>
   <div class="hero-inner">
-    <p class="eyebrow fade-up">Access to Awareness™</p>
-    <h1 class="display" data-split>Awareness is the ultimate power.</h1>
-    <p class="lead fade-up">A space of total acceptance, where the ego is seen through — and life, at last, becomes your own.</p>
-    <div class="hero-cta fade-up">
-      <a href="#work" class="btn btn--fill" data-hover>Begin the free course</a>
-      <a href="#final" class="btn" data-hover>Book a call</a>
+    <p class="eyebrow fade-up" data-delay="0">Access to Awareness™</p>
+    <h1 class="display" data-split data-delay="1">Awareness is the ultimate power.</h1>
+    <p class="lead fade-up" data-delay="2">A space of total acceptance, where the ego is seen through — and life, at last, becomes your own.</p>
+    <div class="hero-cta fade-up" data-delay="3">
+      <a href="live.html" class="btn btn--fill" data-hover>Begin the free course</a>
+      <a href="contact.html" class="btn" data-hover>Book a call</a>
     </div>
   </div>
   <div class="scrollcue"><span>Scroll</span><span class="l"></span></div>
 </section>
 
-<!-- ============ MARQUEE ============ -->
+<!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track" id="marquee">
     <span>Awareness is the ultimate power</span>
@@ -403,41 +84,38 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
   </div>
 </div>
 
-<!-- ============ INVITATION ============ -->
-<section class="invite pad" id="invite">
+<!-- INVITATION -->
+<section class="invite pad">
   <div class="wrap">
     <p class="eyebrow fade-up" style="margin-bottom:1.6rem;">An invitation</p>
-    <p class="lead" data-split-soft>I work with students who are quietly certain there is something more than the routine we call life — and are hungry enough to look for it.</p>
+    <p class="lead" data-split>I work with students who are quietly certain there is something more than the routine we call life — and are hungry enough to look for it.</p>
     <div class="invite-body">
-      <p class="fade-up">I promise you nothing, and I fix no one. I hold up a mirror — with love, and a good deal of humour — until you can no longer look away. What follows is the slow disentanglement of the ego, and the return of a life that is Soul-expressed.</p>
-      <p class="fade-up">This is not a walk in the park. It is extraordinary.</p>
+      <p class="fade-up">I will not hand you the truth, and I will not try to fix you. What I do promise is this — clarity, an understanding of your own mechanisms, the power of real choice, and the remembering of who you actually are.</p>
+      <p class="fade-up">I hold up a mirror, with love and a good deal of humour, until you can no longer look away. What follows is the slow disentanglement of the ego, and the return of a life that is Soul-expressed. This is not a walk in the park. It is extraordinary.</p>
     </div>
     <p class="whisper fade-up">You cannot escape the mirror. I say this with love.</p>
   </div>
 </section>
 
-<!-- ============ THE WORK ============ -->
-<section class="pad" id="work">
+<!-- THE WORK -->
+<section class="pad panel" id="work">
   <div class="wrap">
-    <div class="work-head">
-      <div>
-        <p class="eyebrow fade-up" style="margin-bottom:1.2rem;">The Work</p>
-        <h2 class="h-lg" data-split-soft>Four ways to begin.</h2>
-      </div>
-      <p class="body fade-up" style="margin-bottom:.4rem;">Every path leads to the same place — the power of your own awareness. Where to enter depends only on you.</p>
+    <div class="sec-head">
+      <span class="eyebrow fade-up">The Work</span>
+      <h2 class="h-lg" data-split>Four ways to begin.</h2>
     </div>
 
-    <a href="#final" class="offer" data-hover>
+    <a href="contact.html" class="offer fade-up" data-hover>
       <span class="num">01</span>
       <div class="mid">
         <h3>The Master Course</h3>
-        <p>Ten two-hour sessions, one to one. Together we trace the ego you have been building since the age of two — and learn to master it. This is where the real work lives.</p>
+        <p>Ten two-hour sessions, one to one, on Zoom. Together we trace the ego you have been building since the age of two — and learn to master it. This is where the real work lives.</p>
         <div class="meta"><span>One to one</span><span>By conversation</span><span>Ten sessions</span></div>
       </div>
       <span class="go">Book a call <svg viewBox="0 0 30 8" fill="none"><path d="M0 4h28M25 1l3 3-3 3" stroke="currentColor"/></svg></span>
     </a>
 
-    <a href="#stay" class="offer" data-hover>
+    <a href="live.html" class="offer fade-up" data-hover>
       <span class="num">02</span>
       <div class="mid">
         <h3>Awakening All Sleepwalkers</h3>
@@ -447,17 +125,17 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
       <span class="go">Join the free course <svg viewBox="0 0 30 8" fill="none"><path d="M0 4h28M25 1l3 3-3 3" stroke="currentColor"/></svg></span>
     </a>
 
-    <a href="#final" class="offer" data-hover>
+    <a href="contact.html" class="offer fade-up" data-hover>
       <span class="num">03</span>
       <div class="mid">
         <h3>Mentoring</h3>
-        <p>Ongoing, one to one, for students ready to go further — and to be met without compromise.</p>
+        <p>Ongoing, one to one, for students ready to go further — and to be met without compromise. Most begin after the Master Course.</p>
         <div class="meta"><span>One to one</span><span>Ongoing</span></div>
       </div>
       <span class="go">Book a call <svg viewBox="0 0 30 8" fill="none"><path d="M0 4h28M25 1l3 3-3 3" stroke="currentColor"/></svg></span>
     </a>
 
-    <a href="#work" class="offer" data-hover>
+    <a href="courses.html" class="offer fade-up" data-hover>
       <span class="num">04</span>
       <div class="mid">
         <h3>The Self-Guided Course</h3>
@@ -469,36 +147,34 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
-<section class="about pad" id="about">
-  <div class="wrap about-grid">
-    <div class="about-portrait fade-up" id="live">
-      <div class="ph">Portrait — Menorca</div>
+<!-- ABOUT PREVIEW -->
+<section class="pad" id="about-preview">
+  <div class="wrap split">
+    <div class="split-media img-mask fade-up">
+      <img src="https://static.wixstatic.com/media/114c2f_3ed56c18734b4f0592949b1990e57820~mv2.jpg/v1/fill/w_1100,h_1375,al_c,q_85/file.jpg" alt="Sophie McLean at home in Menorca" loading="lazy" />
     </div>
-    <div class="about-copy">
-      <p class="eyebrow fade-up" style="margin-bottom:1.4rem;">About Sophie</p>
-      <p class="fade-up">French by birth, formed in the universities of England and France, undone and remade by a spiritual awakening at the age of twelve. Over the years I have sat with more than eighty thousand people across the world.</p>
-      <p class="fade-up">Today I live simply in Menorca — close to the sea, and to the silence — and I teach the only thing I know to be true.</p>
+    <div class="split-copy">
+      <span class="eyebrow fade-up">About Sophie</span>
+      <p class="fade-up">French by birth, formed in the universities of France, undone and remade by an awakening at the age of twelve. I have led seminars for tens of thousands of people across more than twenty countries — and then walked away from all of it.</p>
+      <p class="fade-up">Today I live simply in Menorca, close to the sea and the silence, and I teach the only thing I know to be true.</p>
       <p class="about-truth fade-up">Awareness is the ultimate power.</p>
       <div class="stats">
         <div class="st fade-up"><div class="n" data-count="80000">0</div><div class="k">Students worldwide</div></div>
         <div class="st fade-up"><div class="n">Menorca</div><div class="k">Where I teach from</div></div>
       </div>
+      <div class="fade-up" style="margin-top:2.2rem;"><a href="about.html" class="link-u" data-hover>Read my story →</a></div>
     </div>
   </div>
 </section>
 
-<!-- ============ QUOTE ============ -->
-<section class="quote pad">
-  <div class="wrap">
-    <blockquote data-split-soft>The world suffers from not knowing it is loved.</blockquote>
-    <p class="attr fade-up">— Sophie McLean</p>
-    <div class="fade-up" style="margin-top:2.4rem;"><a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" class="link-u" data-hover>Read more on Substack →</a></div>
-  </div>
+<!-- BAND QUOTE -->
+<section class="band">
+  <img src="https://static.wixstatic.com/media/114c2f_38490e9204fd49dbb47060234d88c973~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_82/file.jpg" alt="Light on the sea, Menorca" loading="lazy" />
+  <div class="band-quote"><blockquote>The world suffers from not knowing it is loved.</blockquote></div>
 </section>
 
-<!-- ============ BOOKS ============ -->
-<section class="pad" id="books">
+<!-- BOOKS PREVIEW -->
+<section class="pad panel" id="books-preview">
   <div class="wrap">
     <div class="sec-head center">
       <span class="eyebrow fade-up">The Books</span>
@@ -506,73 +182,98 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
     </div>
     <div class="books-grid">
       <div class="book fade-up">
-        <div class="book-cover c1"><div class="ct">The Elegance of Simplicity</div><div class="cl">Sophie McLean</div></div>
+        <div class="book-cover"><img src="https://static.wixstatic.com/media/8c7972_83647a45d5ed443b849c18228573714b~mv2.png/v1/fit/w_600,h_900,q_90/file.jpg" alt="The Elegance of Simplicity book cover" loading="lazy" /></div>
         <div class="book-info">
           <h3>The Elegance of Simplicity</h3>
-          <p>On awareness, the ego, and the quiet freedom of wanting less.</p>
-          <a href="https://www.amazon.com/s?k=Sophie+McLean+The+Elegance+of+Simplicity" target="_blank" rel="noopener" class="link-u" data-hover>Read on Amazon →</a>
+          <div class="by">A Wisdom Teacher's Epic Journey to Consciousness</div>
+          <p>Two women, one seeking and one who has arrived, in a story about ego, awareness, and the quiet freedom of wanting less.</p>
+          <a href="books.html" class="link-u" data-hover>Read more →</a>
         </div>
       </div>
       <div class="book fade-up">
-        <div class="book-cover c2"><div class="ct">Awakening All Sleepwalkers</div><div class="cl">Sophie McLean</div></div>
+        <div class="book-cover"><img src="https://static.wixstatic.com/media/8c7972_ead831d33aa0418fab0b63ec5436a55d~mv2.png/v1/fit/w_600,h_900,q_90/file.jpg" alt="Awakening All Sleepwalkers book cover" loading="lazy" /></div>
         <div class="book-info">
           <h3>Awakening All Sleepwalkers</h3>
-          <p>A book for those who suspect they have been asleep — and are ready to wake.</p>
-          <a href="https://www.amazon.com/s?k=Sophie+McLean+Awakening+All+Sleepwalkers" target="_blank" rel="noopener" class="link-u" data-hover>Read on Amazon →</a>
+          <div class="by">An Essential Guide to Expand Awareness</div>
+          <p>For those who suspect they have been asleep, and are ready to wake — with free worksheets to walk beside it.</p>
+          <a href="books.html" class="link-u" data-hover>Read more →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ STAY / NEWSLETTER ============ -->
-<section class="stay pad" id="stay">
+<!-- INTERVIEWS / PODCAST TEASER -->
+<section class="pad" id="watch-preview">
+  <div class="wrap split reverse">
+    <div class="split-media wide img-mask fade-up">
+      <img src="https://static.wixstatic.com/media/114c2f_87633c11b88e428e811bf7037845d753~mv2.jpg/v1/fill/w_1200,h_1200,al_c,q_82/file.jpg" alt="Sophie McLean recording a conversation" loading="lazy" />
+    </div>
+    <div class="split-copy">
+      <span class="eyebrow fade-up">Watch &amp; Listen</span>
+      <h2 class="h-md fade-up" style="margin-bottom:1.4rem;">Conversations on awareness.</h2>
+      <p class="fade-up">Years of interviews and talks — on the ego, on consciousness, on becoming an exceptional human being. And something new is coming: a weekly podcast on my YouTube channel.</p>
+      <p class="fade-up italic" style="color:var(--olive-dk);font-family:var(--serif);font-size:1.2rem;">A weekly conversation — arriving soon.</p>
+      <div class="fade-up" style="margin-top:1.8rem;"><a href="interviews.html" class="link-u" data-hover>Watch &amp; listen →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- STAY / NEWSLETTER -->
+<section class="ink-section pad center" id="stay">
   <div class="wrap">
     <p class="eyebrow fade-up">Stay close</p>
-    <h2 class="h-md fade-up">A letter, once in a while.</h2>
-    <p class="fade-up">On awareness, the ego, and living from the Soul. No noise, no persuasion — you may leave whenever you wish.</p>
-    <form class="form fade-up" id="subForm">
+    <h2 class="h-md fade-up" style="max-width:16ch;margin:1.4rem auto 0;">A letter, once in a while.</h2>
+    <p class="fade-up" style="max-width:44ch;margin:1.6rem auto 0;">On awareness, the ego, and living from the Soul. No noise, no persuasion — you may leave whenever you wish.</p>
+    <form class="form fade-up" data-demo>
       <input type="email" placeholder="Your email" required aria-label="Your email" />
       <button type="submit" data-hover>Subscribe</button>
     </form>
-    <p class="form-note" id="formNote"></p>
-    <p class="sub fade-up">Or read the writing as it comes — <a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" class="link-u" data-hover>follow on Substack →</a></p>
+    <p class="form-note"></p>
+    <p class="sub-line fade-up">Or read the writing as it comes — <a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" class="link-u" data-hover>follow on Substack →</a></p>
   </div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section class="final pad" id="final">
+<!-- FINAL CTA -->
+<section class="final pad">
   <div class="wrap">
     <p class="eyebrow fade-up" style="margin-bottom:1.6rem;">Begin</p>
-    <h2 class="h-lg" data-split-soft>If any of this is stirring in you, let's talk.</h2>
-    <p class="fade-up">For the Master Course and Mentoring, we begin with a conversation — unhurried, and honest.</p>
-    <div class="fade-up"><a href="mailto:accesstoawareness@gmail.com?subject=Booking%20a%20call" class="btn btn--fill" data-hover>Book a call</a></div>
+    <h2 class="h-lg" data-split>If any of this is stirring in you, let's talk.</h2>
+    <p class="fade-up">A call is for those exploring the Master Course or Mentoring — and for students who are stuck and need support. If you are simply curious, the free course is the doorway.</p>
+    <div class="fade-up" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn--fill" data-hover>Book a call</a>
+      <a href="live.html" class="btn" data-hover>Start the free course</a>
+    </div>
     <p class="humour fade-up">Take the work seriously — not significantly.</p>
   </div>
 </section>
+
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer>
+<footer class="site">
   <div class="foot-grid">
     <div class="foot-brand">
-      <a href="#top" class="brand" data-hover>Access to Awareness<sup>™</sup></a>
+      <a href="index.html" class="brand" data-hover>Access to Awareness<sup>™</sup></a>
       <p>Awareness is the ultimate power. The teaching of Sophie McLean, from Menorca.</p>
     </div>
     <div class="foot-col">
       <h4>Explore</h4>
-      <a href="#about" data-hover>About</a>
-      <a href="#live" data-hover>Sophie McLean Live</a>
-      <a href="#work" data-hover>Courses</a>
-      <a href="#work" data-hover>Worksheets</a>
-      <a href="#live" data-hover>Interviews</a>
+      <a href="about.html" data-hover>About</a>
+      <a href="live.html" data-hover>Sophie McLean Live</a>
+      <a href="courses.html" data-hover>Courses</a>
+      <a href="worksheets.html" data-hover>Worksheets</a>
     </div>
     <div class="foot-col">
       <h4>More</h4>
-      <a href="#books" data-hover>Books</a>
-      <a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" data-hover>Blog · Substack</a>
-      <a href="#final" data-hover>Contact</a>
-      <a href="#final" data-hover>Donate</a>
+      <a href="interviews.html" data-hover>Interviews</a>
+      <a href="books.html" data-hover>Books</a>
+      <a href="contact.html" data-hover>Contact</a>
+      <a href="donate.html" data-hover>Donate</a>
+    </div>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
+      <a href="https://accesstoawareness.substack.com/" target="_blank" rel="noopener" data-hover>Substack</a>
+      <a href="interviews.html" data-hover>Watch &amp; Listen</a>
       <a href="mailto:accesstoawareness@gmail.com" data-hover>Email</a>
     </div>
   </div>
@@ -582,229 +283,6 @@ footer{ background:var(--bone-2); border-top:1px solid var(--line); padding:clam
   </div>
 </footer>
 
-<!-- ============ SCRIPTS ============ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-(function(){
-  "use strict";
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.getElementById("yr").textContent = new Date().getFullYear();
-
-  /* ---------- Split headings into words ---------- */
-  function splitWords(el, soft){
-    const text = el.textContent.trim();
-    el.setAttribute("aria-label", text);
-    el.innerHTML = "";
-    text.split(/\s+/).forEach((w,i,arr)=>{
-      const line = document.createElement("span");
-      line.className = "reveal-line";
-      const word = document.createElement("span");
-      word.className = "word"; word.setAttribute("aria-hidden","true");
-      word.textContent = w;
-      line.appendChild(word);
-      el.appendChild(line);
-      if(i<arr.length-1) el.appendChild(document.createTextNode(" "));
-    });
-    return el.querySelectorAll(".word");
-  }
-
-  /* ---------- Custom cursor ---------- */
-  const ring = document.getElementById("ring"), dot = document.getElementById("dot");
-  if(!reduce && window.matchMedia("(pointer:fine)").matches){
-    let rx=innerWidth/2, ry=innerHeight/2, dx=rx, dy=ry;
-    document.addEventListener("mousemove", e=>{ dx=e.clientX; dy=e.clientY; dot.style.left=dx+"px"; dot.style.top=dy+"px"; });
-    (function loop(){ rx+=(dx-rx)*.16; ry+=(dy-ry)*.16; ring.style.left=rx+"px"; ring.style.top=ry+"px"; requestAnimationFrame(loop); })();
-    document.querySelectorAll("[data-hover], a, button, input").forEach(el=>{
-      el.addEventListener("mouseenter",()=>document.body.classList.add("hovering"));
-      el.addEventListener("mouseleave",()=>document.body.classList.remove("hovering"));
-    });
-  } else { ring.style.display="none"; dot.style.display="none"; }
-
-  /* ---------- Header show/hide + scrolled + progress ---------- */
-  const header = document.getElementById("header"), progress = document.getElementById("progress");
-  let lastY = 0;
-  function onScroll(){
-    const y = window.scrollY;
-    const h = document.documentElement.scrollHeight - innerHeight;
-    progress.style.width = (y/h*100)+"%";
-    header.classList.toggle("scrolled", y>40);
-    if(y>lastY && y>320) header.classList.add("hidden"); else header.classList.remove("hidden");
-    lastY = y;
-  }
-  window.addEventListener("scroll", onScroll, {passive:true});
-
-  /* ---------- Menu overlay ---------- */
-  const overlay = document.getElementById("overlay");
-  document.getElementById("menuOpen").addEventListener("click",()=>overlay.classList.add("open"));
-  document.getElementById("menuClose").addEventListener("click",()=>overlay.classList.remove("open"));
-  overlay.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>overlay.classList.remove("open")));
-
-  /* ---------- Magnetic buttons ---------- */
-  if(!reduce && window.matchMedia("(pointer:fine)").matches){
-    document.querySelectorAll(".btn, .menu-toggle").forEach(btn=>{
-      btn.addEventListener("mousemove", e=>{
-        const r = btn.getBoundingClientRect();
-        const mx = e.clientX - r.left - r.width/2, my = e.clientY - r.top - r.height/2;
-        btn.style.transform = `translate(${mx*0.25}px, ${my*0.35}px)`;
-      });
-      btn.addEventListener("mouseleave",()=>{ btn.style.transform=""; });
-    });
-  }
-
-  /* ---------- Subscribe (front-end only demo) ---------- */
-  const form = document.getElementById("subForm"), note = document.getElementById("formNote");
-  form.addEventListener("submit", e=>{
-    e.preventDefault();
-    note.textContent = "Thank you. Watch for a letter soon.";
-    form.reset();
-  });
-
-  /* ---------- Newsletter marquee (CSS-free JS loop) ---------- */
-  const mq = document.getElementById("marquee");
-  mq.innerHTML += mq.innerHTML; // duplicate for seamless loop
-
-  /* ============================================================
-     GSAP
-     ============================================================ */
-  if(!window.gsap){
-    // CDN blocked / offline — reveal everything so nothing is lost
-    document.querySelectorAll(".fade-up").forEach(el=>{ el.style.opacity=1; el.style.transform="none"; });
-  }
-
-  if(window.gsap){
-    gsap.registerPlugin(ScrollTrigger);
-
-    // marquee
-    if(!reduce){
-      gsap.to(mq, { xPercent:-50, duration:38, ease:"none", repeat:-1 });
-    }
-
-    if(reduce){
-      document.querySelectorAll(".fade-up,.word").forEach(el=>{ el.style.opacity=1; el.style.transform="none"; });
-    } else {
-      // hero display split
-      const heroWords = splitWords(document.querySelector("[data-split]"));
-      gsap.set(heroWords, { yPercent:118 });
-      gsap.set(".hero .eyebrow, .hero .lead, .hero-cta", { y:24 });
-      const tl = gsap.timeline({ delay:.3 });
-      tl.to(".hero .eyebrow", { opacity:1, y:0, duration:1, ease:"power3.out" })
-        .to(heroWords, { yPercent:0, duration:1.2, stagger:.09, ease:"power4.out" }, "-=.7")
-        .to(".hero .lead", { opacity:1, y:0, duration:1, ease:"power3.out" }, "-=.8")
-        .to(".hero-cta", { opacity:1, y:0, duration:1, ease:"power3.out" }, "-=.7");
-
-      // soft-split headings on scroll
-      document.querySelectorAll("[data-split-soft]").forEach(el=>{
-        const words = splitWords(el, true);
-        gsap.set(words, { yPercent:118 });
-        gsap.to(words, {
-          yPercent:0, duration:1.1, stagger:.05, ease:"power4.out",
-          scrollTrigger:{ trigger:el, start:"top 82%" }
-        });
-      });
-
-      // generic fade-ups
-      gsap.utils.toArray(".fade-up").forEach(el=>{
-        gsap.to(el, {
-          opacity:1, y:0, duration:1.1, ease:"power3.out",
-          scrollTrigger:{ trigger:el, start:"top 88%" }
-        });
-      });
-
-      // counter
-      const c = document.querySelector("[data-count]");
-      if(c){
-        const target = +c.getAttribute("data-count");
-        ScrollTrigger.create({
-          trigger:c, start:"top 85%", once:true,
-          onEnter:()=>{
-            const o={v:0};
-            gsap.to(o,{ v:target, duration:2.2, ease:"power2.out",
-              onUpdate:()=>{ c.textContent = Math.floor(o.v).toLocaleString()+"+"; } });
-          }
-        });
-      }
-    }
-  }
-
-  /* ============================================================
-     THREE.JS — hero particle sphere (awareness / wholeness)
-     ============================================================ */
-  const canvas = document.getElementById("webgl");
-  if(window.THREE && canvas){
-    let renderer, scene, camera, points, raf;
-    const mouse = {x:0, y:0};
-
-    function init(){
-      const w = canvas.clientWidth, h = canvas.clientHeight;
-      renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
-      renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-      renderer.setSize(w,h,false);
-
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 100);
-      camera.position.z = 4.4;
-
-      // points on a sphere (Fibonacci distribution)
-      const N = 2600, R = 1.75;
-      const pos = new Float32Array(N*3);
-      for(let i=0;i<N;i++){
-        const phi = Math.acos(1 - 2*(i+0.5)/N);
-        const theta = Math.PI*(1+Math.sqrt(5))*i;
-        const rr = R*(0.82 + 0.18*Math.random());
-        pos[i*3]   = rr*Math.sin(phi)*Math.cos(theta);
-        pos[i*3+1] = rr*Math.cos(phi);
-        pos[i*3+2] = rr*Math.sin(phi)*Math.sin(theta);
-      }
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute("position", new THREE.BufferAttribute(pos,3));
-      const mat = new THREE.PointsMaterial({
-        color:0x494f3a, size:0.018, sizeAttenuation:true,
-        transparent:true, opacity:0.0, depthWrite:false
-      });
-      points = new THREE.Points(geo, mat);
-      scene.add(points);
-
-      if(window.gsap){ gsap.to(mat, { opacity:0.5, duration:2.8, ease:"power2.out", delay:.5 }); }
-      else{ mat.opacity = 0.5; }
-    }
-
-    function resize(){
-      const w = canvas.clientWidth, h = canvas.clientHeight;
-      renderer.setSize(w,h,false);
-      camera.aspect = w/h; camera.updateProjectionMatrix();
-    }
-
-    let t=0;
-    function animate(){
-      t += 0.0016;
-      points.rotation.y = t*0.9;
-      points.rotation.x = Math.sin(t*0.5)*0.12;
-      // subtle breathing
-      const s = 1 + Math.sin(t*1.2)*0.02;
-      points.scale.set(s,s,s);
-      // mouse parallax
-      camera.position.x += (mouse.x*0.5 - camera.position.x)*0.04;
-      camera.position.y += (-mouse.y*0.35 - camera.position.y)*0.04;
-      camera.lookAt(0,0,0);
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(animate);
-    }
-
-    try{
-      init();
-      resize();
-      requestAnimationFrame(resize);
-      if(reduce){ renderer.render(scene,camera); }
-      else{
-        window.addEventListener("mousemove", e=>{ mouse.x = (e.clientX/innerWidth)*2-1; mouse.y = (e.clientY/innerHeight)*2-1; });
-        animate();
-      }
-      window.addEventListener("resize", resize);
-    }catch(err){ canvas.style.display="none"; }
-  }
-})();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
