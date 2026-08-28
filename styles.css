@@ -240,6 +240,7 @@ main{ position:relative; }
 .card{ display:block; text-decoration:none; color:var(--ink); border:1px solid var(--line); border-radius:3px; overflow:hidden; background:var(--bg); transition:transform .5s var(--ease),border-color .5s; }
 .card:hover{ transform:translateY(-6px); border-color:var(--olive); }
 .card .card-media{ aspect-ratio:16/10; overflow:hidden; background:var(--panel); }
+.cards--square .card-media{ aspect-ratio:1/1; }
 .card .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
 .card:hover .card-media img{ transform:scale(1.05); }
 .card .card-body{ padding:1.5rem 1.5rem 1.8rem; }
