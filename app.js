@@ -25,12 +25,18 @@
       });
       var tk=norm(document.title); if(has(tk)) document.title=DICT[tk];
     }
-    var btn=document.createElement("button");
-    btn.className="lang-toggle"; btn.type="button"; btn.textContent=(LANG==="fr")?"EN":"FR";
-    btn.setAttribute("aria-label", LANG==="fr"?"Switch to English":"Passer en français");
-    btn.addEventListener("click", function(){ try{ localStorage.setItem("lang", LANG==="fr"?"en":"fr"); }catch(e){} location.reload(); });
+    var sw=document.createElement("div"); sw.className="lang-switch"; sw.setAttribute("role","group"); sw.setAttribute("aria-label","Language / Langue");
+    ["en","fr"].forEach(function(l,i){
+      if(i>0){ var sep=document.createElement("span"); sep.className="lang-sep"; sep.setAttribute("aria-hidden","true"); sep.textContent="/"; sw.appendChild(sep); }
+      var o;
+      if(l===LANG){ o=document.createElement("span"); o.className="lang-opt is-active"; o.setAttribute("aria-current","true"); }
+      else { o=document.createElement("button"); o.type="button"; o.className="lang-opt";
+        o.setAttribute("aria-label", l==="fr"?"Passer en français":"Switch to English");
+        o.addEventListener("click", function(){ try{ localStorage.setItem("lang", l); }catch(e){} location.reload(); }); }
+      o.textContent=l.toUpperCase(); sw.appendChild(o);
+    });
     var mo=document.getElementById("menuOpen");
-    if(mo && mo.parentNode){ mo.parentNode.insertBefore(btn, mo); } else { document.body.appendChild(btn); }
+    if(mo && mo.parentNode){ mo.parentNode.insertBefore(sw, mo); } else { document.body.appendChild(sw); }
   })();
 
   /* theme toggle */
