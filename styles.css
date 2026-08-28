@@ -5,42 +5,43 @@
 
 :root{
   color-scheme: light;
-  --bg:#F5F2EA; --panel:#EFEBE0; --ink:#22211C; --ink-soft:#55524A;
-  --olive:#6F7355; --olive-dk:#565A41; --sand:#C9BEA9;
-  --line:rgba(34,33,28,0.14); --particle:74,80,56;
-  --stay-bg:#22211C; --stay-text:#F5F2EA; --stay-muted:rgba(245,242,234,.62);
-  --header-bg:rgba(245,242,234,.82);
+  --bg:#ffffff; --panel:#f2f5f9; --ink:#083e73; --ink-soft:#42618a;
+  --olive:#2f6098; --olive-dk:#0c3a6b; --sand:#3a6ea5;
+  --line:rgba(8,62,115,0.16); --particle:8,62,115;
+  --stay-bg:#eef3f9; --stay-text:#083e73; --stay-muted:rgba(8,62,115,.66);
+  --header-bg:rgba(255,255,255,.85);
 
   --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans:"Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --ease:cubic-bezier(0.22,1,0.36,1);
   --gutter:clamp(1.4rem,5vw,6rem); --maxw:1240px;
 }
+/* White/navy is the brand default even when the OS prefers dark; the toggle opts into dark. */
 @media (prefers-color-scheme:dark){
-  :root{
-    color-scheme: dark;
-    --bg:#161610; --panel:#1E1E16; --ink:#ECE7DA; --ink-soft:#A7A192;
-    --olive:#9AA372; --olive-dk:#B4BD88; --sand:#C9BEA9;
-    --line:rgba(236,231,218,0.14); --particle:143,151,108;
-    --stay-bg:#20201A; --stay-text:#ECE7DA; --stay-muted:rgba(236,231,218,.6);
-    --header-bg:rgba(22,22,16,.82);
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#ffffff; --panel:#f2f5f9; --ink:#083e73; --ink-soft:#42618a;
+    --olive:#2f6098; --olive-dk:#0c3a6b; --sand:#3a6ea5;
+    --line:rgba(8,62,115,0.16); --particle:8,62,115;
+    --stay-bg:#eef3f9; --stay-text:#083e73; --stay-muted:rgba(8,62,115,.66);
+    --header-bg:rgba(255,255,255,.85);
   }
 }
 :root[data-theme="light"]{
   color-scheme: light;
-  --bg:#F5F2EA; --panel:#EFEBE0; --ink:#22211C; --ink-soft:#55524A;
-  --olive:#6F7355; --olive-dk:#565A41; --sand:#C9BEA9;
-  --line:rgba(34,33,28,0.14); --particle:74,80,56;
-  --stay-bg:#22211C; --stay-text:#F5F2EA; --stay-muted:rgba(245,242,234,.62);
-  --header-bg:rgba(245,242,234,.82);
+  --bg:#ffffff; --panel:#f2f5f9; --ink:#083e73; --ink-soft:#42618a;
+  --olive:#2f6098; --olive-dk:#0c3a6b; --sand:#3a6ea5;
+  --line:rgba(8,62,115,0.16); --particle:8,62,115;
+  --stay-bg:#eef3f9; --stay-text:#083e73; --stay-muted:rgba(8,62,115,.66);
+  --header-bg:rgba(255,255,255,.85);
 }
 :root[data-theme="dark"]{
   color-scheme: dark;
-  --bg:#161610; --panel:#1E1E16; --ink:#ECE7DA; --ink-soft:#A7A192;
-  --olive:#9AA372; --olive-dk:#B4BD88; --sand:#C9BEA9;
-  --line:rgba(236,231,218,0.14); --particle:143,151,108;
-  --stay-bg:#20201A; --stay-text:#ECE7DA; --stay-muted:rgba(236,231,218,.6);
-  --header-bg:rgba(22,22,16,.82);
+  --bg:#0a1c33; --panel:#0f2540; --ink:#e7eef7; --ink-soft:#a3b6cf;
+  --olive:#6aa0d6; --olive-dk:#8fb8e2; --sand:#8fb8e2;
+  --line:rgba(231,238,247,0.15); --particle:150,180,215;
+  --stay-bg:#0f2540; --stay-text:#e7eef7; --stay-muted:rgba(231,238,247,.62);
+  --header-bg:rgba(10,28,51,.85);
 }
 
 *{ margin:0; padding:0; box-sizing:border-box; }
@@ -112,17 +113,17 @@ header.site.scrolled{ background:var(--header-bg); backdrop-filter:blur(14px); p
 @media(max-width:1040px){ .nav-links{ display:none; } }
 
 /* ---- overlay menu ---- */
-.overlay{ position:fixed; inset:0; z-index:1200; background:#161610; color:#ECE7DA; display:flex; flex-direction:column; justify-content:center; padding:var(--gutter); clip-path:circle(0% at calc(100% - 5rem) 3rem); pointer-events:none; transition:clip-path .8s var(--ease); }
+.overlay{ position:fixed; inset:0; z-index:1200; background:#072a4d; color:#eef3f9; display:flex; flex-direction:column; justify-content:center; padding:var(--gutter); clip-path:circle(0% at calc(100% - 5rem) 3rem); pointer-events:none; transition:clip-path .8s var(--ease); }
 .overlay.open{ clip-path:circle(150% at calc(100% - 5rem) 3rem); pointer-events:auto; }
-.overlay .close{ position:absolute; top:1.6rem; right:var(--gutter); background:none; border:none; color:#ECE7DA; font-family:var(--sans); font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; }
+.overlay .close{ position:absolute; top:1.6rem; right:var(--gutter); background:none; border:none; color:#eef3f9; font-family:var(--sans); font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; }
 .overlay-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:3rem; align-items:end; max-width:var(--maxw); margin:0 auto; width:100%; }
 .overlay nav{ display:flex; flex-direction:column; gap:.1rem; }
-.overlay nav a{ font-family:var(--serif); font-size:clamp(1.7rem,3.8vw,2.9rem); font-weight:300; color:#ECE7DA; text-decoration:none; line-height:1.24; opacity:.55; transition:opacity .4s,padding-left .4s var(--ease); width:fit-content; }
+.overlay nav a{ font-family:var(--serif); font-size:clamp(1.7rem,3.8vw,2.9rem); font-weight:300; color:#eef3f9; text-decoration:none; line-height:1.24; opacity:.55; transition:opacity .4s,padding-left .4s var(--ease); width:fit-content; }
 .overlay nav a:hover,.overlay nav a[aria-current]{ opacity:1; padding-left:.6rem; }
-.overlay nav a .n{ font-family:var(--sans); font-size:.6rem; letter-spacing:.2em; vertical-align:top; color:#9AA372; margin-right:.7em; }
-.overlay-side{ border-left:1px solid rgba(236,231,218,.18); padding-left:2.4rem; }
-.overlay-side p{ color:rgba(236,231,218,.6); font-size:.92rem; margin-bottom:1.4rem; max-width:30ch; }
-.overlay-side a{ color:#ECE7DA; }
+.overlay nav a .n{ font-family:var(--sans); font-size:.6rem; letter-spacing:.2em; vertical-align:top; color:#6fa0d4; margin-right:.7em; }
+.overlay-side{ border-left:1px solid rgba(238,243,249,.18); padding-left:2.4rem; }
+.overlay-side p{ color:rgba(238,243,249,.6); font-size:.92rem; margin-bottom:1.4rem; max-width:30ch; }
+.overlay-side a{ color:#eef3f9; }
 @media(max-width:760px){ .overlay-grid{ grid-template-columns:1fr; gap:2rem; } .overlay-side{ border:none; padding-left:0; } }
 
 /* ---- layout ---- */
