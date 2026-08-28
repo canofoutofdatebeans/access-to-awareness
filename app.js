@@ -6,6 +6,33 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var yr = document.getElementById("yr"); if(yr) yr.textContent = new Date().getFullYear();
 
+  /* ---- language (i18n) — runs before headings are split ---- */
+  var LANG = (function(){ try{ return localStorage.getItem("lang")||"en"; }catch(e){ return "en"; } })();
+  document.documentElement.lang = LANG;
+  (function(){
+    var DICT = (window.I18N && window.I18N.fr) || {};
+    function norm(s){ return s.replace(/\s+/g," ").trim(); }
+    function has(k){ return Object.prototype.hasOwnProperty.call(DICT,k); }
+    if(LANG==="fr"){
+      var w=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), node, nodes=[];
+      while((node=w.nextNode())){ nodes.push(node); }
+      nodes.forEach(function(n){
+        var raw=n.nodeValue, key=norm(raw); if(!key) return;
+        if(has(key)){ var lead=(raw.match(/^\s*/)||[""])[0], trail=(raw.match(/\s*$/)||[""])[0]; n.nodeValue=lead+DICT[key]+trail; }
+      });
+      ["placeholder","aria-label","alt","title"].forEach(function(attr){
+        document.querySelectorAll("["+attr+"]").forEach(function(el){ var v=norm(el.getAttribute(attr)); if(has(v)) el.setAttribute(attr,DICT[v]); });
+      });
+      var tk=norm(document.title); if(has(tk)) document.title=DICT[tk];
+    }
+    var btn=document.createElement("button");
+    btn.className="lang-toggle"; btn.type="button"; btn.textContent=(LANG==="fr")?"EN":"FR";
+    btn.setAttribute("aria-label", LANG==="fr"?"Switch to English":"Passer en français");
+    btn.addEventListener("click", function(){ try{ localStorage.setItem("lang", LANG==="fr"?"en":"fr"); }catch(e){} location.reload(); });
+    var mo=document.getElementById("menuOpen");
+    if(mo && mo.parentNode){ mo.parentNode.insertBefore(btn, mo); } else { document.body.appendChild(btn); }
+  })();
+
   /* theme toggle */
   var root = document.documentElement, tbtn = document.getElementById("themeToggle");
   function currentDark(){ var t=root.getAttribute("data-theme"); if(t) return t==="dark"; return window.matchMedia("(prefers-color-scheme: dark)").matches; }

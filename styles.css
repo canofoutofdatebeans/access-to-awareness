@@ -110,6 +110,8 @@ header.site.scrolled{ background:var(--header-bg); backdrop-filter:blur(14px); p
 .menu-toggle{ display:flex; align-items:center; gap:.7em; background:none; border:none; font-family:var(--sans); font-size:.76rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink); cursor:pointer; }
 .menu-toggle .bars{ display:inline-flex; flex-direction:column; gap:4px; width:22px; }
 .menu-toggle .bars i{ height:1px; width:100%; background:var(--ink); display:block; }
+.lang-toggle{ background:none; border:1px solid var(--line); color:var(--ink); font-family:var(--sans); font-weight:400; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; padding:.55em .85em; border-radius:100px; cursor:pointer; transition:background .35s var(--ease),color .35s,border-color .35s; }
+.lang-toggle:hover{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
 @media(max-width:1040px){ .nav-links{ display:none; } }
 
 /* ---- overlay menu ---- */
