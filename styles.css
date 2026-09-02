@@ -291,12 +291,16 @@ main{ position:relative; }
 
 /* ---- price tiers ---- */
 .price-tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.8rem; max-width:56rem; }
-.price-tiers .tier{ border:1px solid var(--line); border-radius:3px; padding:1.7rem 1.4rem; text-align:center; transition:border-color .4s var(--ease); }
+.price-tiers .tier{ border:1px solid var(--line); border-radius:3px; padding:1.7rem 1.4rem; text-align:center; transition:border-color .4s var(--ease); display:flex; flex-direction:column; }
 .price-tiers .tier.is-suggested{ border-color:var(--olive); position:relative; }
 .price-tiers .tier-badge{ position:absolute; top:-.7em; left:50%; transform:translateX(-50%); background:var(--bg); padding:0 .8em; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--olive-dk); white-space:nowrap; }
 .price-tiers .amount{ display:block; font-family:var(--serif); font-size:2.1rem; color:var(--ink); line-height:1; }
 .price-tiers .label{ display:block; margin-top:.6rem; font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--olive-dk); }
-.price-tiers p{ margin-top:.9rem; font-size:.86rem; color:var(--ink-soft); line-height:1.5; }
+.price-tiers p{ margin-top:.9rem; font-size:.86rem; color:var(--ink-soft); line-height:1.5; flex:1 0 auto; }
+.price-tiers .tier-btn{ align-self:center; margin-top:1.4rem; font-family:var(--sans); font-weight:400; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:1px solid var(--ink); border-radius:100px; padding:.75em 1.7em; cursor:pointer; transition:background .4s var(--ease),color .4s,border-color .4s; }
+.price-tiers .tier-btn:hover{ background:var(--ink); color:var(--bg); }
+.price-tiers .tier.is-suggested .tier-btn{ background:var(--olive-dk); border-color:var(--olive-dk); color:#fff; }
+.price-tiers .tier.is-suggested .tier-btn:hover{ background:var(--ink); border-color:var(--ink); color:var(--bg); }
 @media(max-width:760px){ .price-tiers{ grid-template-columns:1fr; } }
 
 /* ---- final cta ---- */

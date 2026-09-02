@@ -95,6 +95,7 @@ window.I18N = { fr: {
 "Most choose this":"Le plus choisi",
 "Pick honestly. If even this is out of reach, write to me.":"Choisissez honnêtement. Si même cela reste hors de portée, écrivez-moi.",
 "Reserve your seat":"Réserver ma place",
+"Reserve":"Réserver",
 "The Power of Awakening, the whole path, at your own pace, in your own time. For those who prefer to walk quietly and alone, with the teaching there whenever you return to it.":"The Power of Awakening, le chemin entier, à votre rythme, à votre heure. Pour ceux qui préfèrent avancer en silence et seuls, avec l'enseignement présent chaque fois que vous y revenez.",
 "Online":"En ligne",
 "Enquire":"Se renseigner",
