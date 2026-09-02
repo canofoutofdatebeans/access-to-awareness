@@ -147,7 +147,7 @@
     function draw(){
       t+=0.005; ry+=0.0016; fade+=(1-fade)*0.02; mx+=(tmx-mx)*0.05; my+=(tmy-my)*0.05;
       ctx.clearRect(0,0,W,H);
-      var cx=W/2, cy=H/2, R=Math.min(W,H)*0.34*(1+Math.sin(t*1.1)*0.015);
+      var cx=W/2, cy=H/2, R=Math.min(W,H)*0.4*(1+Math.sin(t*1.1)*0.015);
       var cY=Math.cos(ry), sY=Math.sin(ry), pitch=my*0.3, cX=Math.cos(pitch), sX=Math.sin(pitch);
       for(var k=0;k<pts.length;k++){ var p=pts[k];
         var x=p.x*cY-p.z*sY, z=p.x*sY+p.z*cY, y=p.y, y2=y*cX-z*sX, z2=y*sX+z*cX, persp=1/(2-z2);
